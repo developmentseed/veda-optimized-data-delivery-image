@@ -36,5 +36,3 @@ RUN python -m pip install obstore==0.3.0b2
 RUN python -m pip install icechunk xarray VirtualiZarr
 RUN python -m pip install git+https://github.com/mpiannucci/kerchunk@v3
 RUN python -m pip install git+https://github.com/zarr-developers/numcodecs@zarr3-codecs
-RUN python -m pip install git+https://github.com/kylebarron/zarr-python@kyle/object-store
-RUN python -m pip install git+https://github.com/pydata/xarray@main
