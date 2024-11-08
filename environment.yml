@@ -1,0 +1,63 @@
+name: optimized-data-delivery
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - dask-core
+  - distributed
+  - flox
+  - numpy
+  - xarray
+  # IO / auth libraries
+  - boto3
+  - earthaccess
+  - fiona
+  - fsspec
+  - h5netcdf
+  - h5py
+  - hdf5
+  - kerchunk
+  - netcdf4
+  - zarr
+  - libgdal # core C++ library and all plugins
+  # Resampling libraries
+  - geoutils
+  - pyresample
+  - rasterio
+  - rioxarray
+  - scipy
+  - odc-geo
+  - xcube
+  - pygmt
+  - xesmf>=0.8.0
+  # For profiling
+  - pyinstrument
+  - memray
+  # For development
+  - wget
+  - curl
+  - gcc
+  - make
+  - jupyter
+  - pip
+  - pre-commit
+  - pytest
+  - pytest-cov
+  - pytest-env
+  - pytest-xdist
+  - pytest-timeout
+  # For development on the Hub
+  - git
+  - code-server
+  - jupyter-vscode-proxy
+  # For visualizing results
+  - hvplot
+  # For building the quarto book
+  - jupytext
+  - pip:
+      - rio-cogeo
+      - morecantile
+      # For development on the Hub
+      - gh-scoped-creds
+      # Development versions for icechunk
+      - git+https://github.com/pydata/sparse@main # latest stable release doesn't ensure NumPy 2.0 compatibility

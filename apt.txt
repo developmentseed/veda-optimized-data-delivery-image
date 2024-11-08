@@ -1,0 +1,6 @@
+htop
+tree
+tar
+zip
+unzip
+less
