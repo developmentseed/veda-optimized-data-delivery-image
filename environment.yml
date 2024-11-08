@@ -18,6 +18,7 @@ dependencies:
   - hdf5
   - kerchunk
   - netcdf4
+  - pooch
   - zarr
   - libgdal # core C++ library and all plugins
   # Resampling libraries
