@@ -49,6 +49,7 @@ dependencies:
   - pytest-timeout
   # For development on the Hub
   - git
+  - gh
   - code-server
   - jupyter-vscode-proxy
   # For visualizing results
