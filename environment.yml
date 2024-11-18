@@ -41,6 +41,7 @@ dependencies:
   - make
   - jupyter
   - pip
+  - uv
   - pre-commit
   - pytest
   - pytest-cov
