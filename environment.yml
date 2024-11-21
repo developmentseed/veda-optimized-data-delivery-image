@@ -34,6 +34,8 @@ dependencies:
   # For profiling
   - pyinstrument
   - memray
+  # For dask debugging
+  - graphviz
   # For development
   - wget
   - curl
@@ -43,6 +45,7 @@ dependencies:
   - hatch
   - pip
   - uv
+  - pixi
   - pre-commit
   - pytest
   - pytest-cov
