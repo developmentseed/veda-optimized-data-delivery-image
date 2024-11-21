@@ -32,7 +32,7 @@ dependencies:
   - pyinstrument
   - memray
   # For dask debugging
-  - graphviz
+  - python-graphviz
   # For development
   - wget
   - curl
