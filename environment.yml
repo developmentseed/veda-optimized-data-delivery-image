@@ -7,7 +7,6 @@ dependencies:
   - distributed
   - flox
   - numpy
-  - xarray
   # IO / auth libraries
   - boto3
   - earthaccess
@@ -16,10 +15,8 @@ dependencies:
   - h5netcdf
   - h5py
   - hdf5
-  - kerchunk
   - netcdf4
   - pooch
-  - zarr
   - libgdal # core C++ library and all plugins
   # Resampling libraries
   - geoutils
@@ -34,6 +31,8 @@ dependencies:
   # For profiling
   - pyinstrument
   - memray
+  # For dask debugging
+  - graphviz
   # For development
   - wget
   - curl
@@ -43,6 +42,7 @@ dependencies:
   - hatch
   - pip
   - uv
+  - pixi
   - pre-commit
   - pytest
   - pytest-cov
