@@ -4,9 +4,12 @@ channels:
   - nodefaults
 dependencies:
   - dask-core
+  - akimbo
+  - awkward
   - distributed
   - flox
   - numpy
+  - polars
   - xvec
   - xarray
   # IO / auth libraries
