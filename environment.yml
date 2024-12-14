@@ -53,6 +53,7 @@ dependencies:
   - git
   - gh
   - code-server
+  - jupyter-resource-usage
   - jupyter-vscode-proxy
   # For visualizing results
   - hvplot
