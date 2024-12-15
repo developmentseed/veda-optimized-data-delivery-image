@@ -39,4 +39,4 @@ RUN python -m pip install git+https://github.com/pydata/xarray
 RUN python -m pip install git+https://github.com/mpiannucci/kerchunk@v3
 
 # Test out obstore <-> Zarr integration
-RUN python -m pip install git+https://github.com/maxrjones/zarr-python@obstore
+RUN python -m pip install --no-cache-dir git+https://github.com/maxrjones/zarr-python@obstore
