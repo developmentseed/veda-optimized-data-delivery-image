@@ -30,8 +30,11 @@ COPY install-vscode-ext.sh ${HOME}/.kernels/install-vscode-ext.sh
 RUN bash ${HOME}/.kernels/install-vscode-ext.sh
 
 # Install obstore development packages (based on discussion in https://github.com/zarr-developers/zarr-python/pull/1661)
-RUN python -m pip install obstore==0.3.0b5
+RUN python -m pip install obstore==0.3.0b9
 
 # Install icechunk development packages (these steps required from https://github.com/earth-mover/icechunk/issues/197)
 RUN python -m pip install icechunk xarray VirtualiZarr
 RUN python -m pip install git+https://github.com/mpiannucci/kerchunk@v3
+
+# Test out obstore <-> Zarr integration
+RUN python -m pip install git+https://github.com/maxrjones/zarr-python@obstore
