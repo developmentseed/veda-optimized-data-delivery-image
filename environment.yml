@@ -44,7 +44,6 @@ dependencies:
   - gcc
   - make
   - jupyter
-  - hatch
   - pip
   - uv
   - pixi
