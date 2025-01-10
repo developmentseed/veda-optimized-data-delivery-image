@@ -45,6 +45,7 @@ dependencies:
   - make
   - jupyter
   - pip
+  - pipx
   - uv
   - pixi
   - pre-commit

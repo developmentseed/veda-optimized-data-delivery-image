@@ -35,3 +35,6 @@ RUN python -m pip install obstore==0.3.0b10
 # Install icechunk development packages (these steps required from https://github.com/earth-mover/icechunk/issues/197)
 RUN python -m pip install icechunk xarray VirtualiZarr
 RUN python -m pip install git+https://github.com/mpiannucci/kerchunk@v3
+
+# Install hatch in an isolated environment
+RUN python -m pipx install hatch
