@@ -17,7 +17,7 @@ RUN apt-get update && \
     rm /tmp/apt.txt
 
 # Install rustup
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Insall quarto
 USER root
