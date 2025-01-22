@@ -16,6 +16,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm /tmp/apt.txt
 
+# Install rustup
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # Insall quarto
 USER root
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
