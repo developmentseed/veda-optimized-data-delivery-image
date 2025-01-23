@@ -22,7 +22,6 @@ USER root
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
 RUN dpkg -i quarto-1.5.57-linux-amd64.deb
 
-USER ${NB_UID}
 
 # Install rustup
 ENV RUSTUP_HOME="/opt/.rustup"
@@ -30,6 +29,8 @@ ENV CARGO_HOME="/opt/.cargo"
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 RUN rustup component add rust-src
+
+USER ${NB_UID}
 
 # Use solution from https://github.com/NASA-Openscapes/corn/blob/main/ci/Dockerfile
 # for installing VS Code extensions.
