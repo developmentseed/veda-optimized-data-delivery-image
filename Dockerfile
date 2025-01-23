@@ -1,6 +1,9 @@
 # Inherit from a JupyterHub compatible Docker image
 FROM quay.io/jupyter/base-notebook:2024-10-14
 
+RUN echo ${NB_USER}
+RUN echo ${HOME}
+
 # Add conda packages
 COPY environment.yml /tmp/environment.yml
 RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml
@@ -23,8 +26,8 @@ RUN dpkg -i quarto-1.5.57-linux-amd64.deb
 
 USER ${NB_USER}
 
-ENV RUSTUP_HOME="/home/${NB_USER}/.rustup"
-ENV CARGO_HOME="/home/${NB_UBER}/.cargo"
+ENV RUSTUP_HOME="${HOME}/.rustup"
+ENV CARGO_HOME="${HOME}/.cargo"
 # Install rustup
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
