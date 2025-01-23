@@ -16,15 +16,16 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm /tmp/apt.txt
 
-# Install rustup
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
 # Insall quarto
 USER root
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
 RUN dpkg -i quarto-1.5.57-linux-amd64.deb
 
 USER ${NB_USER}
+
+# Install rustup
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="$HOME/.cargo/bin:${PATH}"
 
 # Use solution from https://github.com/NASA-Openscapes/corn/blob/main/ci/Dockerfile
 # for installing VS Code extensions.
