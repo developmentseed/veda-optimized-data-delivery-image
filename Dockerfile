@@ -31,6 +31,9 @@ ENV PATH="${CARGO_HOME}/bin:${PATH}"
 RUN rustup component add rust-src
 
 USER ${NB_UID}
+# Update cargo home for users
+ENV CARGO_HOME="${HOME}/.cargo"
+ENV PATH="${CARGO_HOME}/bin:${PATH}"
 
 # Use solution from https://github.com/NASA-Openscapes/corn/blob/main/ci/Dockerfile
 # for installing VS Code extensions.
