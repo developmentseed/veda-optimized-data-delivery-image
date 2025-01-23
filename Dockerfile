@@ -19,7 +19,7 @@ RUN apt-get update && \
 
 # Insall quarto
 USER root
-RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
+RUN wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
 RUN dpkg -i quarto-1.5.57-linux-amd64.deb
 
 
