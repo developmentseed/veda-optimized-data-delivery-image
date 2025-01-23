@@ -23,9 +23,11 @@ RUN dpkg -i quarto-1.5.57-linux-amd64.deb
 
 USER ${NB_USER}
 
+ENV RUSTUP_HOME="/home/${NB_USER}/.rustup"
+ENV CARGO_HOME="/home/${NB_UBER}/.cargo"
 # Install rustup
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="$HOME/.cargo/bin:${PATH}"
+ENV PATH="${CARGO_HOME}/bin:${PATH}"
 RUN rustup component add rust-src
 
 # Use solution from https://github.com/NASA-Openscapes/corn/blob/main/ci/Dockerfile
