@@ -42,5 +42,5 @@ COPY install-vscode-ext.sh ${HOME}/.kernels/install-vscode-ext.sh
 RUN bash ${HOME}/.kernels/install-vscode-ext.sh
 
 # Install icechunk development packages (these steps required from https://github.com/earth-mover/icechunk/issues/197)
-RUN python -m pip install icechunk xarray VirtualiZarr
+RUN python -m pip install xarray git+https://github.com/zarr-developers/VirtualiZarr.git@ab/upgrade-icechunk#egg=VirtualiZarr[icechunk]
 RUN python -m pip install git+https://github.com/mpiannucci/kerchunk@v3
