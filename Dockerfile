@@ -35,16 +35,9 @@ USER ${NB_UID}
 ENV CARGO_HOME="${HOME}/.cargo"
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 
-# Use solution from https://github.com/NASA-Openscapes/corn/blob/main/ci/Dockerfile
-# for installing VS Code extensions.
-COPY install-vscode-ext.sh ${HOME}/.kernels/install-vscode-ext.sh
-
-RUN bash ${HOME}/.kernels/install-vscode-ext.sh
-
 # Install from main branches of key libraries
 RUN python -m pip install git+https://github.com/pydata/xarray.git
 RUN python -m pip install git+https://github.com/zarr-developers/zarr-python.git
 RUN python -m pip install git+https://github.com/zarr-developers/VirtualiZarr.git
 RUN python -m pip install git+https://github.com/fsspec/kerchunk.git
 RUN python -m pip install git+https://github.com/earth-mover/icechunk#subdirectory=icechunk-python
-
