@@ -36,8 +36,9 @@ ENV CARGO_HOME="${HOME}/.cargo"
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 
 # Install from main branches of key libraries
-RUN python -m pip install git+https://github.com/pydata/xarray.git
-RUN python -m pip install git+https://github.com/zarr-developers/zarr-python.git
-RUN python -m pip install git+https://github.com/zarr-developers/VirtualiZarr.git
-RUN python -m pip install git+https://github.com/fsspec/kerchunk.git
-RUN python -m pip install git+https://github.com/earth-mover/icechunk#subdirectory=icechunk-python
+RUN python -m pip install --no-cache-dir \
+    git+https://github.com/pydata/xarray.git \
+    git+https://github.com/zarr-developers/zarr-python.git \
+    git+https://github.com/zarr-developers/VirtualiZarr.git \
+    git+https://github.com/fsspec/kerchunk.git \
+    git+https://github.com/earth-mover/icechunk#subdirectory=icechunk-python
