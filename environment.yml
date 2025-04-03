@@ -13,10 +13,12 @@ dependencies:
   - xvec
   - xarray
   # IO / auth libraries
+  - awscli
   - boto3
   - earthaccess
   - fiona
   - fsspec
+  - gcsfs
   - h5netcdf
   - h5py
   - hdf5
