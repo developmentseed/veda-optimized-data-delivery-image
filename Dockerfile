@@ -8,8 +8,6 @@ RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml
 
 COPY apt.txt /tmp/apt.txt
 
-
-
 USER root
 
 RUN apt-get update && \
