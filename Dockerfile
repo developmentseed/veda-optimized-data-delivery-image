@@ -8,6 +8,8 @@ RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml
 
 COPY apt.txt /tmp/apt.txt
 
+
+
 USER root
 
 RUN apt-get update && \
@@ -29,6 +31,10 @@ ENV CARGO_HOME="/opt/.cargo"
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 RUN rustup component add rust-src
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install
 
 USER ${NB_UID}
 # Update cargo home for users
