@@ -44,3 +44,5 @@ RUN python -m pip install --no-cache-dir \
     git+https://github.com/zarr-developers/VirtualiZarr.git@develop \
     git+https://github.com/fsspec/kerchunk.git \
     git+https://github.com/earth-mover/icechunk#subdirectory=icechunk-python
+
+RUN python -m pip install --no-cache-dir "obstore @ git+https://github.com/developmentseed/obstore@848e7c99972f9e13c185dd1f84b1194f5621015f#subdirectory=obstore"
