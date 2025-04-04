@@ -35,6 +35,8 @@ USER ${NB_UID}
 ENV CARGO_HOME="${HOME}/.cargo"
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 
+RUN cargo install --git https://github.com/developmentseed/obstore.git@848e7c99972f9e13c185dd1f84b1194f5621015f --branch kyle/gcs-skip-signature
+
 # Install from main branches of key libraries
 RUN python -m pip install --no-cache-dir \
     git+https://github.com/pydata/xarray.git \
