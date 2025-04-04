@@ -13,6 +13,7 @@ dependencies:
   - xvec
   - xarray
   # IO / auth libraries
+  - awscli
   - boto3
   - earthaccess
   - fiona
