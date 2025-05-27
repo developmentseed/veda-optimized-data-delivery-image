@@ -11,7 +11,11 @@ dependencies:
   - numpy
   - polars
   - xvec
-  - xarray
+  - xarray>=2025.0.0
+  - zarr>=3.0.8
+  - icechunk>=0.2.0
+  - virtualizarr>=0.3.0
+  - kerchunk>=0.2.8
   # IO / auth libraries
   - boto3
   - earthaccess
