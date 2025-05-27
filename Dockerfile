@@ -38,11 +38,3 @@ USER ${NB_UID}
 # Update cargo home for users
 ENV CARGO_HOME="${HOME}/.cargo"
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
-
-# Install from main branches of key libraries
-RUN python -m pip install --no-cache-dir \
-    git+https://github.com/pydata/xarray.git \
-    git+https://github.com/zarr-developers/zarr-python.git \
-    git+https://github.com/zarr-developers/VirtualiZarr.git@develop \
-    git+https://github.com/fsspec/kerchunk.git \
-    git+https://github.com/earth-mover/icechunk#subdirectory=icechunk-python
