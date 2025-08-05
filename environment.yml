@@ -58,7 +58,7 @@ dependencies:
   # For development on the Hub
   - git
   - gh
-  - code-server<=4.96.4
+  - code-server
   - jupyter-resource-usage
   - jupyter-vscode-proxy
   # For visualizing results
