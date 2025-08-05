@@ -5,3 +5,5 @@ tar
 zip
 unzip
 less
+nano
+vim
