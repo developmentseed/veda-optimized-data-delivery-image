@@ -44,4 +44,4 @@ RUN python -m pip install --no-cache-dir \
     git+https://github.com/maxrjones/zarr-python.git@f9b76408d3d73c1cb639635a769d9aabda638e8f \
     git+https://github.com/zarr-developers/VirtualiZarr.git \
     git+https://github.com/fsspec/kerchunk.git \
-    git+https://github.com/earth-mover/icechunk#subdirectory=icechunk-python@37508c5cb74731b7c96e465ed91c21eebd86f837
+    git+https://github.com/earth-mover/icechunk.git@37508c5cb74731b7c96e465ed91c21eebd86f837#subdirectory=icechunk-python
