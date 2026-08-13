@@ -1,7 +1,6 @@
 # Inherit from a JupyterHub compatible Docker image
 FROM quay.io/jupyter/base-notebook:2024-10-14
 
-RUN echo ${NB_UID}
 # Add conda packages
 COPY environment.yml /tmp/environment.yml
 RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml
@@ -17,8 +16,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm /tmp/apt.txt
 
-# Insall quarto
-USER root
+# Install quarto
 RUN wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
 RUN dpkg -i quarto-1.5.57-linux-amd64.deb
 
