@@ -21,20 +21,17 @@ jobs:
     steps:
       - name: Set Environment Variables
         run: |
-
-          echo "DATE_TAG=$(TZ='America/Seattle' date +'%Y.%m.%d')" >> "$GITHUB_ENV"
+          echo "DATE_TAG=$(TZ='America/Los_Angeles' date +'%Y.%m.%d')" >> "$GITHUB_ENV"
 
       - name: Checkout files in repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v7
 
-      - name: Build and push the image to quay.io ${{ matrix.environment }}
-        uses: jupyterhub/repo2docker-action@master
+      - name: Build and push the image to quay.io
+        uses: jupyterhub/repo2docker-action@92fefcbd2b46dd9716f5263a9e740cbc972f6dd9 # master as of 2026-02-23
         with:
           # Make sure username & password/token pair matches your registry credentials
           DOCKER_USERNAME: ${{ secrets.QUAY_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
           DOCKER_REGISTRY: "quay.io"
           ADDITIONAL_TAG: ${{ env.DATE_TAG }}
-          # Disable pushing a 'latest' tag, as this often just causes confusion
-          # LATEST_TAG_OFF: true
           IMAGE_NAME: "developmentseed/veda-optimized-data-delivery-image"
