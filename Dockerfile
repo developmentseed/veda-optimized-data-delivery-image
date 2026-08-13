@@ -1,5 +1,5 @@
 # Inherit from a JupyterHub compatible Docker image
-FROM quay.io/jupyter/base-notebook:2024-10-14
+FROM quay.io/jupyter/base-notebook:2026-08-10
 
 # Add conda packages
 COPY environment.yml /tmp/environment.yml
