@@ -30,6 +30,8 @@ ENV CARGO_HOME="/opt/.cargo"
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 RUN rustup component add rust-src
+# Make the toolchain group-writable so users can run `rustup update` etc.
+RUN fix-permissions "${RUSTUP_HOME}" "${CARGO_HOME}"
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
     unzip -q awscliv2.zip && \
