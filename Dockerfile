@@ -3,22 +3,24 @@ FROM quay.io/jupyter/base-notebook:2024-10-14
 
 # Add conda packages
 COPY environment.yml /tmp/environment.yml
-RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml
+RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml && \
+    mamba clean --all -f -y
 
 COPY apt.txt /tmp/apt.txt
 
 USER root
 
 RUN apt-get update && \
-    xargs -a /tmp/apt.txt apt install -y && \
+    xargs -a /tmp/apt.txt apt-get install -y --no-install-recommends && \
     apt-get autoremove -y && \
     apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* && \
     rm /tmp/apt.txt
 
 # Install quarto
-RUN wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
-RUN dpkg -i quarto-1.5.57-linux-amd64.deb
+RUN wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb && \
+    dpkg -i quarto-1.5.57-linux-amd64.deb && \
+    rm quarto-1.5.57-linux-amd64.deb
 
 
 # Install rustup
@@ -29,8 +31,9 @@ ENV PATH="${CARGO_HOME}/bin:${PATH}"
 RUN rustup component add rust-src
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    ./aws/install
+    unzip -q awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip aws
 
 USER ${NB_UID}
 # Update cargo home for users
