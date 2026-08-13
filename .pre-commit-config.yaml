@@ -50,6 +50,22 @@ repos:
       - id: nbqa-pyupgrade
         args: ["--py37-plus"]
 
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.15.1
+    hooks:
+      - id: hadolint-docker
+        # DL4001: wget and curl are both used intentionally
+        # DL4006: the base image already sets SHELL with pipefail, which hadolint can't see
+        args:
+          [
+            "--ignore",
+            "DL4001",
+            "--ignore",
+            "DL4006",
+            "--failure-threshold",
+            "warning",
+          ]
+
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
     hooks:

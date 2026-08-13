@@ -1,26 +1,27 @@
 # Inherit from a JupyterHub compatible Docker image
-FROM quay.io/jupyter/base-notebook:2024-10-14
+FROM quay.io/jupyter/base-notebook:2026-08-10
 
-RUN echo ${NB_UID}
 # Add conda packages
 COPY environment.yml /tmp/environment.yml
-RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml
+RUN mamba env update --prefix ${CONDA_DIR} --file /tmp/environment.yml && \
+    mamba clean --all -f -y
 
 COPY apt.txt /tmp/apt.txt
 
 USER root
 
 RUN apt-get update && \
-    xargs -a /tmp/apt.txt apt install -y && \
+    xargs -a /tmp/apt.txt apt-get install -y --no-install-recommends && \
     apt-get autoremove -y && \
     apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* && \
     rm /tmp/apt.txt
 
-# Insall quarto
-USER root
-RUN wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.57/quarto-1.5.57-linux-amd64.deb
-RUN dpkg -i quarto-1.5.57-linux-amd64.deb
+# Install quarto
+ARG QUARTO_VERSION=1.10.18
+RUN wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb && \
+    dpkg -i quarto-${QUARTO_VERSION}-linux-amd64.deb && \
+    rm quarto-${QUARTO_VERSION}-linux-amd64.deb
 
 
 # Install rustup
@@ -29,19 +30,15 @@ ENV CARGO_HOME="/opt/.cargo"
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 RUN rustup component add rust-src
+# Make the toolchain group-writable so users can run `rustup update` etc.
+RUN fix-permissions "${RUSTUP_HOME}" "${CARGO_HOME}"
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    ./aws/install
+    unzip -q awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip aws
 
 USER ${NB_UID}
 # Update cargo home for users
 ENV CARGO_HOME="${HOME}/.cargo"
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
-
-# Install from main branches of key libraries
-RUN python -m pip install --no-cache-dir \
-    git+https://github.com/zarr-developers/zarr-python.git \
-    git+https://github.com/zarr-developers/VirtualiZarr.git \
-    git+https://github.com/fsspec/kerchunk.git \
-    git+https://github.com/earth-mover/icechunk#subdirectory=icechunk-python
