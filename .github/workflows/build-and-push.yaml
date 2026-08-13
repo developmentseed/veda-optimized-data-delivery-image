@@ -14,9 +14,13 @@ on:
     branches:
       - main
 
+permissions: {}
+
 jobs:
   test-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Set Environment Variables
@@ -24,7 +28,9 @@ jobs:
           echo "DATE_TAG=$(TZ='America/Los_Angeles' date +'%Y.%m.%d')" >> "$GITHUB_ENV"
 
       - name: Checkout files in repo
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Build and push the image to quay.io
         uses: jupyterhub/repo2docker-action@92fefcbd2b46dd9716f5263a9e740cbc972f6dd9 # master as of 2026-02-23
